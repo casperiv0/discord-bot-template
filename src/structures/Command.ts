@@ -28,6 +28,7 @@ export default class Command {
    * @param {string[]} args message args
    * @returns {any}
    */
+  /* eslint-disable */
   // @ts-expect-error ignore
   async execute(bot: Bot, message: Message, args: string[]): Promise<any> {}
 }

@@ -1,0 +1,6 @@
+version: 2
+updates:
+  - package-ecosystem: "npm" # "npm" "yarn"
+    directory: "."
+    schedule:
+      interval: "monthly" # "daily" "weekly" "monthly"

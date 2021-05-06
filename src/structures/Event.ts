@@ -9,6 +9,7 @@ export default class Event {
     this.name = name;
   }
 
+  /* eslint-disable */
   // @ts-expect-error ignore
   async execute(bot: Bot, ...args: any[]): Promise<any> {}
 }

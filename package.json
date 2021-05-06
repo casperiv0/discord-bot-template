@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .gitignore",
-    "lint": "eslint . {.js,.jsx,.tsx}"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "build:tsc": "tsc --noEmit"
   },
   "author": "",
   "license": "MIT",
