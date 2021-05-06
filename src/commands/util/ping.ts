@@ -18,7 +18,6 @@ export default class PingCommand extends Command {
       return message.channel.send(`The bot's ping is: ${ping}`);
     } catch (err) {
       console.error(err);
-
       return message.channel.send("An unexpected error occurred");
     }
   }
