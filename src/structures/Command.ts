@@ -10,6 +10,7 @@ export interface CommandOptions {
   cooldown?: number;
   aliases?: string[];
   ownerOnly?: boolean;
+  nsfwOnly?: boolean;
 }
 
 export default class Command {

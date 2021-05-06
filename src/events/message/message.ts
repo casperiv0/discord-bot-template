@@ -35,6 +35,11 @@ export default class MessageEvent extends Event {
       if (command.options.ownerOnly && !owners?.includes(`${message.author.id}`)) {
         return message.reply("This command is owner only");
       }
+
+      if (command.options.nsfwOnly && !message.channel.nsfw) {
+        return message.channel.send("Command can only be used in a NSFW channel!");
+      }
+
       const timestamps = bot.cooldowns.get(command.name);
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
