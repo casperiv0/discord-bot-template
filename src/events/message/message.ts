@@ -63,7 +63,7 @@ export default class MessageEvent extends Event {
       return command.execute(bot, message, args);
     } catch (err) {
       console.error(err);
-      return message.channel.send("An unexpected error occurreed");
+      return message.channel.send("An unexpected error occurred");
     }
   }
 }

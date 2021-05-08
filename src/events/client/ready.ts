@@ -1,3 +1,4 @@
+import InteractionHandler from "../../handlers/InteractionHandler";
 import Bot from "../../structures/Bot";
 import Event from "../../structures/Event";
 
@@ -11,6 +12,8 @@ export default class ReadyEvent extends Event {
     const serverCount = bot.guilds.cache.size;
 
     console.log(`Bot is running  ${userCount} users and ${serverCount} servers`);
+
+    new InteractionHandler(bot).loadInteractions();
 
     // Change statuses every 60 seconds (Min is 15s)
     const statuses = [` ${serverCount} servers.`, `${userCount} users`];

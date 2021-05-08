@@ -12,8 +12,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^12.5.3",
-    "glob": "^7.1.6",
+    "discord.js": "github:discordjs/discord.js",
+    "glob": "^7.1.7",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
@@ -23,7 +23,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "dotenv": "^9.0.0",
-    "eslint": "^7.25.0",
+    "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.2.1",
