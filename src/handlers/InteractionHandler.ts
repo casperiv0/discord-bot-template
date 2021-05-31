@@ -4,7 +4,7 @@ import Bot from "../structures/Bot";
 import InteractionCommand from "../structures/Interaction";
 import { ApplicationCommandData } from "discord.js";
 
-// WARNING: This can only be initialized in the ready event!
+// warning: This can only be initialized in the ready event!
 export default class InteractionHandler {
   bot: Bot;
 

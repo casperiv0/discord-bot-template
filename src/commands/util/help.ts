@@ -30,13 +30,13 @@ export default class HelpCommand extends Command {
           .setDescription(command.options.description ?? "No description");
 
         return message.channel.send(embed);
-      } else {
-        const embed = new MessageEmbed()
-          .setTitle(`${bot.user?.username}'s Commands`)
-          .setDescription(`\`\`\`${commands.map((cmd) => cmd.name).join(", ")}\`\`\``);
-
-        return message.channel.send(embed);
       }
+
+      const embed = new MessageEmbed()
+        .setTitle(`${bot.user?.username}'s Commands`)
+        .setDescription(`\`\`\`${commands.map((cmd) => cmd.name).join(", ")}\`\`\``);
+
+      return message.channel.send(embed);
     } catch (err) {
       console.error(err);
       return message.channel.send("An unexpected error occurred");

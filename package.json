@@ -7,26 +7,22 @@
     "dev": "nodemon src/index.ts",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .gitignore",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "build:tsc": "tsc --noEmit"
+    "test:tsc": "tsc --noEmit"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "github:discordjs/discord.js",
+    "discord.js": "^13.0.0-dev.652c683da7032a147313b4a8db043be5385e0656",
     "glob": "^7.1.7",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
+    "@casper124578/eslint-config": "^0.0.12",
     "@types/glob": "^7.1.3",
     "@types/node": "^15.0.2",
     "@types/node-fetch": "^2.5.10",
-    "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
     "dotenv": "^9.0.0",
     "eslint": "^7.26.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.2.1",
     "typescript": "^4.2.4"
   }
 }
