@@ -12,7 +12,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^13.0.0-dev.652c683da7032a147313b4a8db043be5385e0656",
+    "discord.js": "^13.0.0-dev.6567ba821a54d3dc97d07ce8ac55335fef2f346b",
     "glob": "^7.1.7",
     "node-fetch": "^2.6.1"
   },
