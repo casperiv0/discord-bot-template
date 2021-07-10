@@ -1,4 +1,4 @@
-import { Message, MessageEmbed } from "discord.js";
+import * as DJS from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -12,7 +12,7 @@ export default class HelpCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(bot: Bot, message: DJS.Message, args: string[]) {
     try {
       const [commandName] = args;
       const commands = bot.commands;
@@ -25,18 +25,18 @@ export default class HelpCommand extends Command {
           return message.channel.send("Command not found!");
         }
 
-        const embed = new MessageEmbed()
+        const embed = new DJS.MessageEmbed()
           .setTitle(command.name)
           .setDescription(command.options.description ?? "No description");
 
-        return message.channel.send(embed);
+        return message.channel.send({ embeds: [embed] });
       }
 
-      const embed = new MessageEmbed()
+      const embed = new DJS.MessageEmbed()
         .setTitle(`${bot.user?.username}'s Commands`)
         .setDescription(`\`\`\`${commands.map((cmd) => cmd.name).join(", ")}\`\`\``);
 
-      return message.channel.send(embed);
+      return message.channel.send({ embeds: [embed] });
     } catch (err) {
       console.error(err);
       return message.channel.send("An unexpected error occurred");

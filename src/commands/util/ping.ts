@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import * as DJS from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -11,7 +11,7 @@ export default class PingCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
+  async execute(bot: Bot, message: DJS.Message) {
     try {
       const ping = bot.ws.ping;
 

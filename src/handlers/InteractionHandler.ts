@@ -2,7 +2,7 @@ import { parse } from "path";
 import glob from "glob";
 import Bot from "../structures/Bot";
 import InteractionCommand from "../structures/Interaction";
-import { ApplicationCommandData } from "discord.js";
+import * as DJS from "discord.js";
 
 // warning: This can only be initialized in the ready event!
 export default class InteractionHandler {
@@ -36,7 +36,7 @@ export default class InteractionHandler {
 
         this.bot.interactions.set(interaction.name, interaction);
 
-        const data: ApplicationCommandData = {
+        const data: DJS.ApplicationCommandData = {
           name: interaction.name,
           description: interaction.options.description ?? "Empty description",
           options: interaction.options.options ?? [],

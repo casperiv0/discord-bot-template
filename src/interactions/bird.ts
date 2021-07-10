@@ -1,4 +1,4 @@
-import { CommandInteraction, MessageEmbed } from "discord.js";
+import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import Bot from "../structures/Bot";
 import Interaction from "../structures/Interaction";
@@ -11,11 +11,11 @@ export default class BirdInteraction extends Interaction {
     });
   }
 
-  async execute(_: Bot, interaction: CommandInteraction) {
+  async execute(_: Bot, interaction: DJS.CommandInteraction) {
     const data = await (await fetch("https://some-random-api.ml/img/birb")).json();
 
-    const embed = new MessageEmbed().setImage(data.link);
+    const embed = new DJS.MessageEmbed().setImage(data.link);
 
-    return interaction.reply(embed);
+    return interaction.reply({ embeds: [embed] });
   }
 }

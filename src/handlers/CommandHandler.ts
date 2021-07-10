@@ -1,5 +1,5 @@
 import { parse } from "path";
-import { Collection } from "discord.js";
+import * as DJS from "discord.js";
 import glob from "glob";
 import Bot from "../structures/Bot";
 import Command from "../structures/Command";
@@ -38,7 +38,7 @@ export default class CommandHandler {
         });
 
         if (!this.bot.cooldowns.has(command.name)) {
-          this.bot.cooldowns.set(command.name, new Collection());
+          this.bot.cooldowns.set(command.name, new DJS.Collection());
         }
       }
     } catch (e) {

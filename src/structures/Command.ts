@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "./Bot";
 
 export interface CommandOptions {
@@ -25,11 +25,11 @@ export default class Command {
   }
 
   /**
-   * @param {Message} message discord.js message
+   * @param {DJS.Message} message discord.js message
    * @param {string[]} args message args
    * @returns {any}
    */
   /* eslint-disable */
   // @ts-expect-error ignore
-  async execute(bot: Bot, message: Message, args: string[]): Promise<any> {}
+  async execute(bot: Bot, message: DJS.Message, args: string[]): Promise<any> {}
 }

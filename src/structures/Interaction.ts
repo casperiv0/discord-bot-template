@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionData, Interaction } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "./Bot";
 
 export type Args = (string | number | boolean | undefined)[];
@@ -6,7 +6,7 @@ export type Args = (string | number | boolean | undefined)[];
 export interface InteractionCommandOptions {
   name: string;
   description?: string;
-  options?: ApplicationCommandOptionData[];
+  options?: DJS.ApplicationCommandOptionData[];
 }
 
 export default class InteractionCommand {
@@ -27,5 +27,5 @@ export default class InteractionCommand {
    */
   /* eslint-disable */
   // @ts-expect-error
-  async execute(bot: Bot, interaction: Interaction, args: Args): Promise<any> {}
+  async execute(bot: Bot, interaction: DJS.Interaction, args: Args): Promise<any> {}
 }

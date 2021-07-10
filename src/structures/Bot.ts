@@ -1,25 +1,27 @@
-import { Client, Collection, Intents } from "discord.js";
+import * as DJS from "discord.js";
 import CommandHandler from "../handlers/CommandHandler";
 import EventHandler from "../handlers/EventHandler";
 import Command from "./Command";
 import InteractionCommand from "./Interaction";
 
-class Bot extends Client {
-  commands: Collection<string, Command>;
-  aliases: Collection<string, string>;
-  cooldowns: Collection<string, Collection<string, number>>;
-  interactions: Collection<string, InteractionCommand>;
+class Bot extends DJS.Client {
+  commands: DJS.Collection<string, Command>;
+  aliases: DJS.Collection<string, string>;
+  cooldowns: DJS.Collection<string, DJS.Collection<string, number>>;
+  interactions: DJS.Collection<string, InteractionCommand>;
 
   constructor() {
     super({
       allowedMentions: { parse: ["roles", "users"] },
-      intents: [Intents.ALL],
+      intents: [
+        /* provide your intents here */
+      ],
     });
 
-    this.commands = new Collection();
-    this.aliases = new Collection();
-    this.cooldowns = new Collection();
-    this.interactions = new Collection();
+    this.commands = new DJS.Collection();
+    this.aliases = new DJS.Collection();
+    this.cooldowns = new DJS.Collection();
+    this.interactions = new DJS.Collection();
 
     new CommandHandler(this).loadCommands();
     new EventHandler(this).loadEvents();

@@ -1,21 +1,25 @@
-import { Message, Permissions } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "../../structures/Bot";
 import Event from "../../structures/Event";
 
 export default class MessageEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "message");
+    super(bot, "messageCreate");
   }
 
-  async execute(bot: Bot, message: Message) {
+  isNsfwChannel(message: DJS.Message) {
+    return message.channel instanceof DJS.TextChannel && !message.channel.nsfw;
+  }
+
+  async execute(bot: Bot, message: DJS.Message) {
     try {
       if (message.author.id === bot.user?.id) return;
       if (!message.guild?.available || !message.guild) return;
-      if (message.channel.type === "dm") return;
+      if (message.channel.type === "DM") return;
       if (!message.guild?.me) return;
 
       if (
-        !message.channel.permissionsFor(message.guild?.me)?.has(Permissions.FLAGS.SEND_MESSAGES)
+        !message.channel.permissionsFor(message.guild?.me)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
       ) {
         return;
       }
@@ -36,7 +40,7 @@ export default class MessageEvent extends Event {
         return message.reply("This command is owner only");
       }
 
-      if (command.options.nsfwOnly && !message.channel.nsfw) {
+      if (command.options.nsfwOnly && this.isNsfwChannel(message)) {
         return message.channel.send("Command can only be used in a NSFW channel!");
       }
 
