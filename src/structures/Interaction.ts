@@ -9,7 +9,7 @@ export interface InteractionCommandOptions {
   options?: DJS.ApplicationCommandOptionData[];
 }
 
-export default class InteractionCommand {
+export default abstract class InteractionCommand {
   bot: Bot;
   name: string;
   options: InteractionCommandOptions;
@@ -21,11 +21,10 @@ export default class InteractionCommand {
   }
 
   /**
-   * @param {Message} message discord.js message
+   * @param {Bot} bot The bot client
+   * @param {DJS.Interaction} interaction discord.js interaction
    * @param {string[]} args message args
    * @returns {any}
    */
-  /* eslint-disable */
-  // @ts-expect-error
-  async execute(bot: Bot, interaction: DJS.Interaction, args: Args): Promise<any> {}
+  abstract execute(bot: Bot, interaction: DJS.Interaction, args: Args): Promise<any>;
 }

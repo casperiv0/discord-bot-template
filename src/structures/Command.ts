@@ -13,7 +13,7 @@ export interface CommandOptions {
   nsfwOnly?: boolean;
 }
 
-export default class Command {
+export default abstract class Command {
   bot: Bot;
   name: string;
   options: CommandOptions;
@@ -25,11 +25,10 @@ export default class Command {
   }
 
   /**
+   * @param {Bot} bot The bot client
    * @param {DJS.Message} message discord.js message
    * @param {string[]} args message args
    * @returns {any}
    */
-  /* eslint-disable */
-  // @ts-expect-error ignore
-  async execute(bot: Bot, message: DJS.Message, args: string[]): Promise<any> {}
+  abstract execute(bot: Bot, message: DJS.Message, args: string[]): Promise<any>;
 }

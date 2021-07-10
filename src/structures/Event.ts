@@ -1,6 +1,6 @@
 import Bot from "./Bot";
 
-export default class Event {
+export default abstract class Event {
   bot: Bot;
   name: string;
 
@@ -9,7 +9,10 @@ export default class Event {
     this.name = name;
   }
 
-  /* eslint-disable */
-  // @ts-expect-error ignore
-  async execute(bot: Bot, ...args: any[]): Promise<any> {}
+  /**
+   * @param {Bot} bot The bot client
+   * @param {string[]} args event args
+   * @returns {any}
+   */
+  abstract execute(bot: Bot, ...args: any[]): Promise<any>;
 }
