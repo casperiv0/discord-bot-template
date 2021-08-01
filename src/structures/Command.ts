@@ -1,14 +1,11 @@
 import * as DJS from "discord.js";
 import Bot from "./Bot";
 
-export interface CommandOptions {
+export interface InteractionCommandOptions {
   name: string;
   description?: string;
-  category: string;
+  options?: DJS.ApplicationCommandOptionData[];
 
-  usage?: string;
-  cooldown?: number;
-  aliases?: string[];
   ownerOnly?: boolean;
   nsfwOnly?: boolean;
 }
@@ -16,9 +13,9 @@ export interface CommandOptions {
 export default abstract class Command {
   bot: Bot;
   name: string;
-  options: CommandOptions;
+  options: InteractionCommandOptions;
 
-  constructor(bot: Bot, options: CommandOptions) {
+  constructor(bot: Bot, options: InteractionCommandOptions) {
     this.bot = bot;
     this.name = options.name;
     this.options = options;
@@ -26,9 +23,8 @@ export default abstract class Command {
 
   /**
    * @param {Bot} bot The bot client
-   * @param {DJS.Message} message discord.js message
-   * @param {string[]} args message args
+   * @param {DJS.Interaction} interaction discord.js interaction
    * @returns {any}
    */
-  abstract execute(bot: Bot, message: DJS.Message, args: string[]): Promise<any>;
+  abstract execute(bot: Bot, interaction: DJS.Interaction): Promise<any>;
 }

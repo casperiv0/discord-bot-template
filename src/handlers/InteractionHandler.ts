@@ -1,7 +1,7 @@
 import { parse } from "path";
 import glob from "glob";
 import Bot from "../structures/Bot";
-import InteractionCommand from "../structures/Interaction";
+import InteractionCommand from "../structures/Command";
 import * as DJS from "discord.js";
 
 // warning: This can only be initialized in the ready event!
@@ -34,7 +34,7 @@ export default class InteractionHandler {
           process.exit();
         }
 
-        this.bot.interactions.set(interaction.name, interaction);
+        this.bot.commands.set(interaction.name, interaction);
 
         const data: DJS.ApplicationCommandData = {
           name: interaction.name,
@@ -42,6 +42,9 @@ export default class InteractionHandler {
           options: interaction.options.options ?? [],
         };
 
+        /**
+         * note: commands might only show up after 30-60 minutes.
+         */
         await this.bot.application?.commands.create(data);
       }
     } catch (e) {

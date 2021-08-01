@@ -7,18 +7,12 @@ export default class PingCommand extends Command {
     super(bot, {
       name: "ping",
       description: "Returns the bot ping!",
-      category: "util",
     });
   }
 
-  async execute(bot: Bot, message: DJS.Message) {
-    try {
-      const ping = bot.ws.ping;
+  async execute(bot: Bot, interaction: DJS.CommandInteraction) {
+    const ping = bot.ws.ping;
 
-      return message.channel.send(`The bot's ping is: ${ping}`);
-    } catch (err) {
-      console.error(err);
-      return message.channel.send("An unexpected error occurred");
-    }
+    await interaction.reply(`The bot's ping is: ${ping}`);
   }
 }

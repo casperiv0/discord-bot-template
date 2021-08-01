@@ -1,14 +1,10 @@
 import * as DJS from "discord.js";
-import CommandHandler from "../handlers/CommandHandler";
 import EventHandler from "../handlers/EventHandler";
-import Command from "./Command";
-import InteractionCommand from "./Interaction";
+import InteractionCommand from "./Command";
 
 class Bot extends DJS.Client {
-  commands: DJS.Collection<string, Command>;
-  aliases: DJS.Collection<string, string>;
+  commands: DJS.Collection<string, InteractionCommand>;
   cooldowns: DJS.Collection<string, DJS.Collection<string, number>>;
-  interactions: DJS.Collection<string, InteractionCommand>;
 
   constructor() {
     super({
@@ -19,11 +15,8 @@ class Bot extends DJS.Client {
     });
 
     this.commands = new DJS.Collection();
-    this.aliases = new DJS.Collection();
     this.cooldowns = new DJS.Collection();
-    this.interactions = new DJS.Collection();
 
-    new CommandHandler(this).loadCommands();
     new EventHandler(this).loadEvents();
   }
 }
