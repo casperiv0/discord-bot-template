@@ -12,14 +12,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^13.0.0-dev.t1627831263.774f5b7",
+    "discord.js": "^13.1.0",
     "glob": "^7.1.7",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^0.0.16",
     "@types/glob": "^7.1.4",
-    "@types/node": "^16.4.10",
+    "@types/node": "^16.6.1",
     "@types/node-fetch": "^2.5.12",
     "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
