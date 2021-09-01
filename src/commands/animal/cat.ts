@@ -13,7 +13,9 @@ export default class CatCommand extends Command {
 
   async execute(_: Bot, interaction: DJS.CommandInteraction) {
     try {
-      const data = await fetch("https://nekos.life/api/v2/img/meow").then((res) => res.json());
+      const data = (await fetch("https://nekos.life/api/v2/img/meow").then((res) =>
+        res.json(),
+      )) as { url: string };
 
       const embed = new DJS.MessageEmbed().setImage(data.url);
 
