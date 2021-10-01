@@ -17,7 +17,7 @@
     "node-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@casper124578/eslint-config": "^0.0.17",
+    "@casper124578/eslint-config": "^1.0.0",
     "@types/glob": "^7.1.4",
     "@types/node": "^16.10.2",
     "dotenv": "^10.0.0",
