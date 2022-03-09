@@ -1,4 +1,4 @@
-import { parse } from "path";
+import { parse } from "node:path";
 import glob from "glob";
 import Bot from "../structures/Bot";
 import InteractionCommand from "../structures/Command";
