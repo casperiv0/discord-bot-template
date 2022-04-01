@@ -25,6 +25,7 @@ export default class EventHandler {
         const File = await (await import(`../../${file}`)).default;
         const event = new File(this.bot, name) as Event;
 
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         if (!event.execute) {
           throw new TypeError(
             `[ERROR][events]: execute function is required for events! (${file})`,

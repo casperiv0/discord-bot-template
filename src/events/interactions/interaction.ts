@@ -30,7 +30,7 @@ export default class InteractionEvent extends Event {
     }
 
     try {
-      await command?.execute(bot, interaction);
+      await command.execute(bot, interaction);
     } catch (err) {
       console.error(err);
       if (interaction.replied) return;

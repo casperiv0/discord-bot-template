@@ -22,6 +22,7 @@ export default class InteractionHandler {
         const File = await (await import(`../../${file}`)).default;
         const interaction = new File(this.bot, options) as InteractionCommand;
 
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         if (!interaction.execute) {
           new Error(
             `[ERROR][INTERACTIONS]: 'execute' function is required for interactions! (${file})`,
