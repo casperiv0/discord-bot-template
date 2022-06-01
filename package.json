@@ -18,7 +18,7 @@
   "devDependencies": {
     "@casper124578/eslint-config": "^4.4.0",
     "@types/glob": "^7.2.0",
-    "@types/node": "^17.0.35",
+    "@types/node": "^17.0.38",
     "dotenv": "^16.0.1",
     "eslint": "^8.16.0",
     "nodemon": "^2.0.16",
