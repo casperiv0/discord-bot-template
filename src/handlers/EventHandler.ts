@@ -11,7 +11,9 @@ export class EventHandler {
 
   async loadEvents() {
     try {
-      const files = glob.sync("./src/events/**/*.ts");
+      const path =
+        process.env["NODE_ENV"] === "production" ? "./dist/events/**/*.js" : "./src/events/**/*.ts";
+      const files = glob.sync(path);
 
       for (const file of files) {
         const File = await (await import(`../../${file}`)).default;

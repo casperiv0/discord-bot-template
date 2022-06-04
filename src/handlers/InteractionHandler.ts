@@ -13,7 +13,11 @@ export class InteractionHandler {
 
   async loadInteractions() {
     try {
-      const files = glob.sync("./src/commands/**/*.ts");
+      const path =
+        process.env["NODE_ENV"] === "production"
+          ? "./dist/commands/**/*.js"
+          : "./src/commands/**/*.ts";
+      const files = glob.sync(path);
 
       for (const file of files) {
         const File = await (await import(`../../${file}`)).default;
