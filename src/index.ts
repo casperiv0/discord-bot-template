@@ -1,5 +1,5 @@
 import "dotenv/config";
-import Bot from "./structures/Bot";
+import { Bot } from "./structures/Bot.js";
 
 const bot = new Bot();
 

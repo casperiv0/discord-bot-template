@@ -1,11 +1,10 @@
-import { parse } from "node:path";
 import glob from "glob";
-import Bot from "../structures/Bot";
-import InteractionCommand from "../structures/Command";
-import * as DJS from "discord.js";
+import type { Bot } from "../structures/Bot.js";
+import type { Command } from "../structures/Command.js";
+import type * as DJS from "discord.js";
 
 // warning: This can only be initialized in the ready event!
-export default class InteractionHandler {
+export class InteractionHandler {
   bot: Bot;
 
   constructor(bot: Bot) {
@@ -14,26 +13,11 @@ export default class InteractionHandler {
 
   async loadInteractions() {
     try {
-      const files = glob.sync("./src/interactions/**/*.ts");
+      const files = glob.sync("./src/commands/**/*.ts");
 
       for (const file of files) {
-        delete require.cache[file];
-        const options = parse(`../../${file}`);
         const File = await (await import(`../../${file}`)).default;
-        const interaction = new File(this.bot, options) as InteractionCommand;
-
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        if (!interaction.execute) {
-          new Error(
-            `[ERROR][INTERACTIONS]: 'execute' function is required for interactions! (${file})`,
-          );
-          process.exit();
-        }
-
-        if (!interaction.name) {
-          new Error(`[ERROR][INTERACTIONS]: 'name' is required for interactions! (${file})`);
-          process.exit();
-        }
+        const interaction = new File(this.bot) as Command;
 
         this.bot.commands.set(interaction.name, interaction);
 
@@ -43,10 +27,15 @@ export default class InteractionHandler {
           options: interaction.options.options ?? [],
         };
 
-        /**
-         * note: commands might only show up after 30-60 minutes.
-         */
-        await this.bot.application?.commands.create(data);
+        if (process.env["DEV_GUILD_ID"]) {
+          const guild = await this.bot.guilds.fetch(process.env["DEV_GUILD_ID"]);
+          await guild.commands.create(data);
+        } else {
+          /**
+           * note: commands might only show up after 30-60 minutes.
+           */
+          await this.bot.application?.commands.create(data);
+        }
       }
     } catch (e) {
       console.log(e);

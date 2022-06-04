@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import { Command } from "../../structures/Command.js";
+import type { Bot } from "../../structures/Bot.js";
 
 export default class CatCommand extends Command {
   constructor(bot: Bot) {

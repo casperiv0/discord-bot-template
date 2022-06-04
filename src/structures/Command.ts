@@ -1,5 +1,5 @@
-import * as DJS from "discord.js";
-import Bot from "./Bot";
+import type * as DJS from "discord.js";
+import type { Bot } from "./Bot.js";
 
 export interface InteractionCommandOptions {
   name: string;
@@ -10,7 +10,7 @@ export interface InteractionCommandOptions {
   nsfwOnly?: boolean;
 }
 
-export default abstract class Command {
+export abstract class Command {
   bot: Bot;
   name: string;
   options: InteractionCommandOptions;
@@ -24,7 +24,7 @@ export default abstract class Command {
   /**
    * @param {Bot} bot The bot client
    * @param {DJS.Interaction} interaction discord.js interaction
-   * @returns {any}
+   * @returns {DJS.Awaitable<void>}
    */
-  abstract execute(bot: Bot, interaction: DJS.Interaction): Promise<any>;
+  abstract execute(bot: Bot, interaction: DJS.Interaction): DJS.Awaitable<void>;
 }

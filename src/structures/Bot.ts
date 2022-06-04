@@ -1,13 +1,14 @@
 import * as DJS from "discord.js";
-import EventHandler from "../handlers/EventHandler";
-import InteractionCommand from "./Command";
+import type { Command } from "./Command.js";
+import { EventHandler } from "../handlers/EventHandler.js";
 
-class Bot extends DJS.Client {
-  commands: DJS.Collection<string, InteractionCommand> = new DJS.Collection();
+export class Bot extends DJS.Client {
+  commands: DJS.Collection<string, Command> = new DJS.Collection();
 
   constructor() {
     super({
       intents: [
+        DJS.Intents.FLAGS.GUILDS,
         /* provide your intents here */
       ],
     });
@@ -15,5 +16,3 @@ class Bot extends DJS.Client {
     new EventHandler(this).loadEvents();
   }
 }
-
-export default Bot;

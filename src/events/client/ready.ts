@@ -1,17 +1,18 @@
-import InteractionHandler from "../../handlers/InteractionHandler";
-import Bot from "../../structures/Bot";
-import Event from "../../structures/Event";
+import * as DJS from "discord.js";
+import { InteractionHandler } from "../../handlers/InteractionHandler.js";
+import type { Bot } from "../../structures/Bot.js";
+import { Event } from "../../structures/Event.js";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "ready");
+    super(bot, DJS.Constants.Events.CLIENT_READY);
   }
 
   async execute(bot: Bot) {
     const userCount = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
     const serverCount = bot.guilds.cache.size;
 
-    console.log(`Bot is running  ${userCount} users and ${serverCount} servers`);
+    console.log(`Bot is running ${userCount} users and ${serverCount} servers`);
 
     new InteractionHandler(bot).loadInteractions();
 

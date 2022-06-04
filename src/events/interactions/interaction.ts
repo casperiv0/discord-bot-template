@@ -1,10 +1,10 @@
 import * as DJS from "discord.js";
-import Bot from "../../structures/Bot";
-import Event from "../../structures/Event";
+import type { Bot } from "../../structures/Bot.js";
+import { Event } from "../../structures/Event.js";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "interactionCreate");
+    super(bot, DJS.Constants.Events.INTERACTION_CREATE);
   }
 
   isNsfwChannel(interaction: DJS.CommandInteraction) {

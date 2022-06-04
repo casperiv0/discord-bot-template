@@ -1,6 +1,6 @@
-import * as DJS from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import type * as DJS from "discord.js";
+import { Command } from "../../structures/Command.js";
+import type { Bot } from "../../structures/Bot.js";
 
 export default class PingCommand extends Command {
   constructor(bot: Bot) {

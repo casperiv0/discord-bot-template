@@ -1,10 +1,12 @@
-import Bot from "./Bot";
+import type * as DJS from "discord.js";
+import type { Bot } from "./Bot.js";
 
-export default abstract class Event {
+export type EventName = keyof DJS.ClientEvents;
+export abstract class Event {
   bot: Bot;
-  name: string;
+  name: EventName;
 
-  constructor(bot: Bot, name: string) {
+  constructor(bot: Bot, name: EventName) {
     this.bot = bot;
     this.name = name;
   }
@@ -12,7 +14,7 @@ export default abstract class Event {
   /**
    * @param {Bot} bot The bot client
    * @param {string[]} args event args
-   * @returns {any}
+   * @returns {DJS.Awaitable<void>}
    */
-  abstract execute(bot: Bot, ...args: any[]): Promise<any>;
+  abstract execute(bot: Bot, ...args: any[]): DJS.Awaitable<void>;
 }
