@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Command } from "../../structures/Command.js";
 import type { Bot } from "../../structures/Bot.js";
 
@@ -13,9 +13,9 @@ export default class CatCommand extends Command {
 
   async execute(_: Bot, interaction: DJS.CommandInteraction) {
     try {
-      const data = (await fetch("https://nekos.life/api/v2/img/meow").then((res) =>
-        res.json(),
-      )) as { url: string };
+      const data = (await (await request("https://nekos.life/api/v2/img/meow")).body.json()) as {
+        url: string;
+      };
 
       const embed = new DJS.MessageEmbed().setImage(data.url);
 

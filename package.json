@@ -14,7 +14,7 @@
   "dependencies": {
     "discord.js": "^13.7.0",
     "glob": "^8.0.3",
-    "node-fetch": "^3.2.5"
+    "undici": "^5.4.0"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^4.4.0",
