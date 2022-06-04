@@ -12,7 +12,7 @@ export default class ReadyEvent extends Event {
     const userCount = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
     const serverCount = bot.guilds.cache.size;
 
-    console.log(`Bot is running ${userCount} users and ${serverCount} servers`);
+    console.info(`Bot is running ${userCount} users and ${serverCount} servers`);
 
     new InteractionHandler(bot).loadInteractions();
 
