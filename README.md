@@ -1,6 +1,6 @@
 # discord-bot-template
 
-Discord.js bot template with TypeScript, ESLint and Prettier
+Discord.js bot template with ESM, TypeScript, ESLint and Prettier. 
 
 ## Installation
 
