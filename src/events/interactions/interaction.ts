@@ -7,7 +7,7 @@ export default class InteractionEvent extends Event {
     super(bot, DJS.Constants.Events.INTERACTION_CREATE);
   }
 
-  isNsfwChannel(interaction: DJS.CommandInteraction) {
+  private isNsfwChannel(interaction: DJS.CommandInteraction) {
     return interaction.channel instanceof DJS.TextChannel && !interaction.channel.nsfw;
   }
 
@@ -30,7 +30,7 @@ export default class InteractionEvent extends Event {
     }
 
     try {
-      await command.execute(bot, interaction);
+      await command.execute(interaction);
     } catch (err) {
       console.error(err);
       if (interaction.replied) return;

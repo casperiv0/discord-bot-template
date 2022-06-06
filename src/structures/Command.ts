@@ -22,9 +22,8 @@ export abstract class Command {
   }
 
   /**
-   * @param {Bot} bot The bot client
    * @param {DJS.Interaction} interaction discord.js interaction
    * @returns {DJS.Awaitable<void>}
    */
-  abstract execute(bot: Bot, interaction: DJS.Interaction): DJS.Awaitable<void>;
+  abstract execute(interaction: DJS.Interaction): DJS.Awaitable<void>;
 }

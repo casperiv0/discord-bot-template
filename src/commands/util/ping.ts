@@ -10,8 +10,8 @@ export default class PingCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, interaction: DJS.CommandInteraction) {
-    const ping = bot.ws.ping;
+  async execute(interaction: DJS.CommandInteraction) {
+    const ping = this.bot.ws.ping;
 
     await interaction.reply(`The bot's ping is: ${ping}`);
   }

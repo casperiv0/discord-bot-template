@@ -14,8 +14,8 @@ export default class DailyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, interaction: DJS.CommandInteraction<"cached">) {
-    const discordUser = await bot.prismaUtils.upsertDiscordGuildMember({ interaction });
+  async execute(interaction: DJS.CommandInteraction<"cached">) {
+    const discordUser = await this.bot.prismaUtils.upsertDiscordGuildMember({ interaction });
 
     const lastDailyUsed = discordUser.lastDailyUsed?.getTime() ?? 0;
     const hasDailyExpired =
@@ -23,7 +23,7 @@ export default class DailyCommand extends Command {
       this.TWENTY_FOUR_HOUR_TIMEOUT_MS - (Date.now() - lastDailyUsed) > 0;
 
     if (!hasDailyExpired) {
-      await bot.prisma.discordGuildMember.update({
+      await this.bot.prisma.discordGuildMember.update({
         where: { id: discordUser.id },
         data: { lastDailyUsed: new Date(), cash: { increment: this.DAILY_CASH_AMOUNT } },
       });

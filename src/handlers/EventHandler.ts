@@ -1,4 +1,5 @@
-import glob from "glob";
+import { globby } from "globby";
+import { importFileFromFilename } from "../lib/utils.js";
 import type { Bot } from "../structures/Bot.js";
 import type { Event } from "../structures/Event.js";
 
@@ -13,16 +14,20 @@ export class EventHandler {
     try {
       const path =
         process.env["NODE_ENV"] === "production" ? "./dist/events/**/*.js" : "./src/events/**/*.ts";
-      const files = glob.sync(path);
 
-      for (const file of files) {
-        const File = await (await import(`../../${file}`)).default;
-        const event = new File(this.bot) as Event;
-
-        this.bot.on(event.name, event.execute.bind(null, this.bot));
-      }
+      const files = await globby(path);
+      await Promise.all(files.map(async (filename) => this.loadEvent(filename)));
     } catch (e) {
       console.log("An error occurred when loading the events", { e });
     }
+  }
+
+  private async loadEvent(filename: string) {
+    const event = await importFileFromFilename<Event>({
+      filename,
+      constructorOptions: [this.bot],
+    });
+
+    this.bot.on(event.name, event.execute.bind(null, this.bot));
   }
 }

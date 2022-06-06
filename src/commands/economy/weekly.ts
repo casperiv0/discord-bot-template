@@ -14,8 +14,8 @@ export default class WeeklyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, interaction: DJS.CommandInteraction<"cached">) {
-    const discordUser = await bot.prismaUtils.upsertDiscordGuildMember({ interaction });
+  async execute(interaction: DJS.CommandInteraction<"cached">) {
+    const discordUser = await this.bot.prismaUtils.upsertDiscordGuildMember({ interaction });
 
     const lastWeeklyUsed = discordUser.lastWeeklyUsed?.getTime() ?? 0;
     const hasWeeklyExpired =
@@ -23,7 +23,7 @@ export default class WeeklyCommand extends Command {
       this.SEVEN_DAYS_TIMEOUT_MS - (Date.now() - lastWeeklyUsed) > 0;
 
     if (!hasWeeklyExpired) {
-      await bot.prisma.discordGuildMember.update({
+      await this.bot.prisma.discordGuildMember.update({
         where: { id: discordUser.id },
         data: { lastWeeklyUsed: new Date(), cash: { increment: this.WEEKLY_CASH_AMOUNT } },
       });

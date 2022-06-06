@@ -11,7 +11,7 @@ export default class CatCommand extends Command {
     });
   }
 
-  async execute(_: Bot, interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.CommandInteraction) {
     try {
       const data = (await (await request("https://nekos.life/api/v2/img/meow")).body.json()) as {
         url: string;
