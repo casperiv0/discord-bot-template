@@ -28,11 +28,13 @@ export default class DailyCommand extends Command {
       });
 
       const timeLeft = new Date(Date.now() + this.TWENTY_FOUR_HOUR_TIMEOUT_MS);
-      return interaction.reply({
+      interaction.reply({
         content: `Successfully collected ${
           this.DAILY_CASH_AMOUNT
         } cash. Next reward can be collected ${time(timeLeft, "R")}`,
       });
+
+      return;
     }
 
     const timeLeft = new Date(

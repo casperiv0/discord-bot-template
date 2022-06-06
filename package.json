@@ -15,7 +15,7 @@
   "dependencies": {
     "@discordjs/builders": "^0.14.0",
     "@prisma/client": "^3.14.0",
-    "discord.js": "^13.8.0",
+    "discord.js": "^14.0.0-dev.1654519696-fba9710",
     "globby": "^13.1.1",
     "undici": "^5.4.0"
   },

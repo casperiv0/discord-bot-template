@@ -28,11 +28,13 @@ export default class WeeklyCommand extends Command {
       });
 
       const timeLeft = new Date(Date.now() + this.SEVEN_DAYS_TIMEOUT_MS);
-      return interaction.reply({
+      interaction.reply({
         content: `Successfully collected ${
           this.WEEKLY_CASH_AMOUNT
         } cash. Next reward can be collected ${time(timeLeft, "R")}`,
       });
+
+      return;
     }
 
     const timeLeft = new Date(

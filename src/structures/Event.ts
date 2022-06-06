@@ -7,6 +7,7 @@ interface EventOptions {
   bot: Bot;
   name: EventName;
 }
+
 export abstract class Event {
   bot: Bot;
   name: EventName;

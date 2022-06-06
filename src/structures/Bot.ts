@@ -11,7 +11,7 @@ export class Bot extends DJS.Client {
   constructor() {
     super({
       intents: [
-        DJS.Intents.FLAGS.GUILDS,
+        DJS.IntentsBitField.Flags.Guilds,
         /* provide your intents here */
       ],
     });

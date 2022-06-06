@@ -17,7 +17,7 @@ export default class CatCommand extends Command {
         url: string;
       };
 
-      const embed = new DJS.MessageEmbed().setImage(data.url);
+      const embed = new DJS.EmbedBuilder().setImage(data.url);
 
       await interaction.reply({ embeds: [embed] });
     } catch (err) {

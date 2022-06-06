@@ -4,11 +4,16 @@ import { Event } from "../../structures/Event.js";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
-    super({ bot, name: DJS.Constants.Events.INTERACTION_CREATE });
+    super({ bot, name: DJS.Events.InteractionCreate });
   }
 
   private isNsfwChannel(interaction: DJS.CommandInteraction<"cached">) {
     return interaction.channel instanceof DJS.TextChannel && !interaction.channel.nsfw;
+  }
+
+  private isOwner(interaction: DJS.CommandInteraction<"cached">) {
+    const owners = process.env["OWNERS"];
+    return owners?.includes(interaction.user.id);
   }
 
   async execute(bot: Bot, interaction: DJS.Interaction<"cached">) {
@@ -17,16 +22,19 @@ export default class InteractionEvent extends Event {
     const command = bot.commands.get(interaction.commandName);
     if (!command) return;
 
-    const owners = process.env["OWNERS"];
-    if (command.options.ownerOnly && !owners?.includes(interaction.user.id)) {
-      return interaction.reply({ content: "This command is owner only", ephemeral: true });
+    if (command.options.ownerOnly && !this.isOwner(interaction)) {
+      await interaction.reply({ content: "This command is owner only", ephemeral: true });
+
+      return;
     }
 
     if (command.options.nsfwOnly && this.isNsfwChannel(interaction)) {
-      return interaction.reply({
+      await interaction.reply({
         content: "Command can only be used in a NSFW channel!",
         ephemeral: true,
       });
+
+      return;
     }
 
     try {

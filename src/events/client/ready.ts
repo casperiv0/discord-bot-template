@@ -5,7 +5,7 @@ import { Event } from "../../structures/Event.js";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {
-    super({ bot, name: DJS.Constants.Events.CLIENT_READY });
+    super({ bot, name: DJS.Events.ClientReady });
   }
 
   async execute(bot: Bot) {
@@ -21,7 +21,7 @@ export default class ReadyEvent extends Event {
 
     setInterval(() => {
       const status = statuses[Math.floor(Math.random() * statuses.length)];
-      bot.user?.setActivity(status!, { type: "WATCHING" });
+      bot.user?.setActivity(status!, { type: DJS.ActivityType.Watching });
     }, 60000);
   }
 }
