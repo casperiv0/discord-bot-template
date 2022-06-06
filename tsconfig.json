@@ -11,6 +11,8 @@
     "importsNotUsedAsValues": "error",
     "importHelpers": true,
     "outDir": "dist",
+    "sourceMap": true,
+    "lib": ["esnext"],
 
     /* Strict Type-Checking Options */
     "strict": true /* Enable all strict type-checking options. */,
