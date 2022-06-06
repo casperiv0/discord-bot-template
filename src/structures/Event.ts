@@ -2,13 +2,18 @@ import type * as DJS from "discord.js";
 import type { Bot } from "./Bot.js";
 
 export type EventName = keyof DJS.ClientEvents;
+
+interface EventOptions {
+  bot: Bot;
+  name: EventName;
+}
 export abstract class Event {
   bot: Bot;
   name: EventName;
 
-  constructor(bot: Bot, name: EventName) {
-    this.bot = bot;
-    this.name = name;
+  constructor(options: EventOptions) {
+    this.bot = options.bot;
+    this.name = options.name;
   }
 
   /**

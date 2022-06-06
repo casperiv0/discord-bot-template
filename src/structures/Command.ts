@@ -10,6 +10,11 @@ export interface InteractionCommandOptions {
   nsfwOnly?: boolean;
 }
 
+export interface CommandContext {
+  /** the interaction from Discord's API */
+  interaction: DJS.CommandInteraction<"cached">;
+}
+
 export abstract class Command {
   bot: Bot;
   name: string;
@@ -22,8 +27,8 @@ export abstract class Command {
   }
 
   /**
-   * @param {DJS.Interaction} interaction discord.js interaction
+   * @param {CommandContext} context discord.js interaction
    * @returns {DJS.Awaitable<void>}
    */
-  abstract execute(interaction: DJS.Interaction): DJS.Awaitable<void>;
+  abstract execute(context: CommandContext): DJS.Awaitable<void>;
 }

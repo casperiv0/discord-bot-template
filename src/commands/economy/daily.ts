@@ -1,5 +1,4 @@
-import type * as DJS from "discord.js";
-import { Command } from "../../structures/Command.js";
+import { Command, type CommandContext } from "../../structures/Command.js";
 import type { Bot } from "../../structures/Bot.js";
 import { time } from "@discordjs/builders";
 
@@ -14,7 +13,7 @@ export default class DailyCommand extends Command {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute({ interaction }: CommandContext) {
     const discordUser = await this.bot.prismaUtils.upsertDiscordGuildMember({ interaction });
 
     const lastDailyUsed = discordUser.lastDailyUsed?.getTime() ?? 0;

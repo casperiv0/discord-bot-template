@@ -5,7 +5,7 @@ import { Event } from "../../structures/Event.js";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.CLIENT_READY);
+    super({ bot, name: DJS.Constants.Events.CLIENT_READY });
   }
 
   async execute(bot: Bot) {

@@ -1,5 +1,4 @@
-import type * as DJS from "discord.js";
-import { Command } from "../../structures/Command.js";
+import { Command, type CommandContext } from "../../structures/Command.js";
 import type { Bot } from "../../structures/Bot.js";
 
 export default class PingCommand extends Command {
@@ -10,7 +9,7 @@ export default class PingCommand extends Command {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute({ interaction }: CommandContext) {
     const ping = this.bot.ws.ping;
 
     await interaction.reply(`The bot's ping is: ${ping}`);

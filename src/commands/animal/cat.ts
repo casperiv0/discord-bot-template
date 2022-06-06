@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { request } from "undici";
-import { Command } from "../../structures/Command.js";
+import { Command, type CommandContext } from "../../structures/Command.js";
 import type { Bot } from "../../structures/Bot.js";
 
 export default class CatCommand extends Command {
@@ -11,7 +11,7 @@ export default class CatCommand extends Command {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute({ interaction }: CommandContext) {
     try {
       const data = (await (await request("https://nekos.life/api/v2/img/meow")).body.json()) as {
         url: string;

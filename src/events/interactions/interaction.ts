@@ -4,14 +4,14 @@ import { Event } from "../../structures/Event.js";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.INTERACTION_CREATE);
+    super({ bot, name: DJS.Constants.Events.INTERACTION_CREATE });
   }
 
-  private isNsfwChannel(interaction: DJS.CommandInteraction) {
+  private isNsfwChannel(interaction: DJS.CommandInteraction<"cached">) {
     return interaction.channel instanceof DJS.TextChannel && !interaction.channel.nsfw;
   }
 
-  async execute(bot: Bot, interaction: DJS.Interaction) {
+  async execute(bot: Bot, interaction: DJS.Interaction<"cached">) {
     if (!interaction.isCommand()) return;
 
     const command = bot.commands.get(interaction.commandName);
@@ -30,7 +30,7 @@ export default class InteractionEvent extends Event {
     }
 
     try {
-      await command.execute(interaction);
+      await command.execute({ interaction });
     } catch (err) {
       console.error(err);
       if (interaction.replied) return;
