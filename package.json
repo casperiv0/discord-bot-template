@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
-    "build": "npx swc ./src -d dist",
+    "build": "npx prisma generate && npx swc ./src -d dist",
     "start": "NODE_ENV=production node dist/index.js",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\" --ignore-path .gitignore",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
