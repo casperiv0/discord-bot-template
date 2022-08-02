@@ -3,6 +3,7 @@ import type { Bot } from "../structures/Bot.js";
 import type { Command } from "../structures/Command.js";
 import type * as DJS from "discord.js";
 import { importFileFromFilename } from "../lib/utils.js";
+import ms from "pretty-ms";
 
 // warning: This can only be initialized in the ready event!
 export class InteractionHandler {
@@ -25,7 +26,7 @@ export class InteractionHandler {
       await Promise.all(files.map(async (filename) => this.loadInteraction(filename)));
 
       const interactionLoadTime = Date.now() - loadInteractionsStart;
-      console.log(`Interactions loaded: ${interactionLoadTime}ms`);
+      console.log(`Interactions loaded: ${ms(interactionLoadTime)}`);
     } catch (e) {
       console.log(e);
     }

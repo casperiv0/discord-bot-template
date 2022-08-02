@@ -17,6 +17,7 @@
     "@prisma/client": "^4.1.1",
     "discord.js": "^14.1.2",
     "globby": "^13.1.2",
+    "pretty-ms": "^8.0.0",
     "undici": "^5.8.0"
   },
   "devDependencies": {

@@ -1,5 +1,6 @@
 import { Command, type CommandContext } from "../../structures/Command.js";
 import type { Bot } from "../../structures/Bot.js";
+import ms from "pretty-ms";
 
 export default class PingCommand extends Command {
   constructor(bot: Bot) {
@@ -12,6 +13,6 @@ export default class PingCommand extends Command {
   async execute({ interaction }: CommandContext) {
     const ping = this.bot.ws.ping;
 
-    await interaction.reply(`The bot's ping is: ${ping}`);
+    await interaction.reply(`The bot's ping is: ${ms(ping)}`);
   }
 }
