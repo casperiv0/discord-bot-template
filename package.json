@@ -24,7 +24,7 @@
     "@casper124578/eslint-config": "^5.0.1",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.222",
-    "@swc/helpers": "^0.4.3",
+    "@swc/helpers": "^0.4.11",
     "@types/glob": "^8.0.0",
     "@types/node": "^18.6.3",
     "dotenv": "^16.0.1",
