@@ -26,7 +26,7 @@
     "@swc/core": "^1.2.246",
     "@swc/helpers": "^0.4.11",
     "@types/glob": "^8.0.0",
-    "@types/node": "^18.7.14",
+    "@types/node": "^18.7.23",
     "dotenv": "^16.0.2",
     "eslint": "^8.23.0",
     "nodemon": "^2.0.19",
