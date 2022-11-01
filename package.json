@@ -28,7 +28,7 @@
     "@types/glob": "^8.0.0",
     "@types/node": "^18.7.23",
     "dotenv": "^16.0.3",
-    "eslint": "^8.24.0",
+    "eslint": "^8.26.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "prisma": "^4.4.0",
